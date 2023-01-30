@@ -35,7 +35,7 @@ int main(int argc, char const *argv[])
 				help_menu();
 			}
 			// Redirecting to New Entry
-			if(! strcmp(argv[i], "-new")) {
+			else if(! strcmp(argv[i], "-new")) {
 				add_entry();
 			}
 			// Handling any other argument entered other than above
