@@ -2,13 +2,23 @@
 #include <stdlib.h>
 #include <string.h>
 
-// The Text buffer that user will input
-char text[100];
+// Versioned by Naman Chabbra
 
 // Create a new Entry
 void add_entry(){
+	char text[100];
 	printf("\nStart Writting...\n");
-    fgets(text,20,stdin);
+	FILE *fp;
+	fgets(text,99,stdin);
+
+	fp= fopen("diary.txt","w");
+	if (fp == NULL){
+		printf("Failed to Open the File, Please check the file name\n");
+		exit(0);
+	}
+
+	fputs(text,fp);
+	fclose(fp);
 }
 
 // Displaying Help Menu
@@ -34,11 +44,11 @@ int main(int argc, char const *argv[])
 			if(! strcmp(argv[i], "-h")) {
 				help_menu();
 			}
-			// Redirecting to New Entry
+				// Redirecting to New Entry
 			else if(! strcmp(argv[i], "-new")) {
 				add_entry();
 			}
-			// Handling any other argument entered other than above
+				// Handling any other argument entered other than above
 			else {
 				invalid_args();
 			}
